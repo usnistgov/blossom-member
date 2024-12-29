@@ -1,0 +1,26 @@
+ssp:
+
+  dir: ~/b@-ops/trans/ssp
+  create-user:
+    params:
+      - docUUID
+      - fragmentURI
+      - changedDateTime
+    files:
+      - party-insert.xsl
+      - party-cleanup.xsl
+
+  delete-user:
+    xsl:
+      - party-delete.xsl
+      - party-cleanup.xsl
+
+sar:
+  dir: ~/b@-ops/trans/sar
+
+sap:
+  dir: ~/b@-ops/trans/sap
+
+poam:
+  dir: ~/b@-ops/trans/poam
+    

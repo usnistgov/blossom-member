@@ -1,0 +1,41 @@
+env:
+
+  bat:
+    user-dir: /home/ec2-user/b@-ops/s3-user-files-test
+    work-dir: /home/ec2-user/b@-ops
+    logs-dir: /home/ec2-user/b@-ops/logs-test
+    log-at: ALL # ALL < INFO < WARN < ERROR < PROD
+    print-at: ALL # ALL < INFO < WARN < ERROR < PROD
+
+
+  git:
+    repo: <your-GitHub-repository>
+    repo-dir: <local-git-Dir> # E.g. /home/ec2-user/b@-ops/blossom-oscal-auto-test/
+    default-branch: account-request # branch to use if none provided
+
+    ssp: oscal-content/xml/ssp/blossom_admin_member_ssp.xml
+    sap: oscal-content/xml/ssp/blossom_admin_member_sap.xml
+    sar: oscal-content/xml/ssp/blossom_admin_member_sar.xml
+    poam: oscal-content/xml/ssp/blossom_admin_member_poam.xml
+
+
+  aws:
+    s3-drop-name:  <your-S3-name>
+    s3-drop-url:  <your-S3-URL>
+    region: <your-region>
+    idp-pool: <your-IDP-Cognito-Pool>
+    ssm-prefix: <your-dev-user-path> # E.g. "/nist/blossom/dev/user/"
+    ssm-values:
+      - pk
+      - cert
+      - mspid
+      - roles
+      
+  amb:
+    ca-url: <your CA-Authority URL>
+    ord-url: ""
+    network: <your-network-ID> # E.g. n-102938457adf
+    member: <your-AMB-member-id> # E.g. m-10293847576abcdef
+    tls-cert: <your-AMB-TLS-cert-path>
+    cert-dir: ""
+    default: ""
