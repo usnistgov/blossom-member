@@ -1,8 +1,14 @@
 import { Gateway, Wallets } from 'fabric-network';
 import YAML from 'yaml';
 import { getSecret } from './aws';
+import { pinLocation } from './handlers';
+const THIS_FILE = "fabric-network.ts";
 
 async function buildIdentity(username: string) {
+    console.log(`${pinLocation('Building-Identity (ASYNC) ' + THIS_FILE)}:`+
+    `\n\tUSER: ${username};` +
+    `\n\tPREF-X: ${process.env.SSM_PREFIX}`);
+    
     const identity = {
         credentials: {
             certificate: await getSecret(`${process.env.SSM_PREFIX}/${username}/cert`),
@@ -25,7 +31,11 @@ export async function setupNetwork(username: string, channel: string) {
     }
 
     const profile = YAML.parse(Buffer.from(profile_raw, 'base64').toString());
-
+    profile.network_name='Blossom';
+    console.log(`Profile:\n ${JSON.stringify(profile)}`);
+    console.log(`${pinLocation('Building-Identity (ASYNC) ' + THIS_FILE)}:` +
+        `\n\tWALLET: ${JSON.stringify(wallet, null, 2)};` +
+        `\n\tID: ${JSON.stringify(identity, null, 2)}`);
     const gateway = new Gateway();
     await gateway.connect(profile, {
         wallet,

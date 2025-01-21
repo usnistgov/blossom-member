@@ -10,6 +10,7 @@
 
     "channel_name": "authorization",
     "contract_name": "authorization",
+    
     "auth_channel": "authorization",
     "auth_contract": "authorization",
     "bus_channel" : "business",

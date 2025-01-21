@@ -3,8 +3,8 @@ import {
     APIGatewayProxyCallback,
     APIGatewayEvent,
 } from 'aws-lambda';
-import { HandlerFunc, invokeHandler, queryHandler, pinError } from './handlers';
-
+import { HandlerFunc, invokeHandler, queryHandler, pinError, pinLocation } from './handlers';
+const THIS_FILE = 'index.ts';
 /**
  * 
  * @param event AWS gateway event
@@ -16,8 +16,8 @@ export const handler = async (
     context: Context,
     callback: APIGatewayProxyCallback
 ) => {
-    console.log(`index.ts-L19-Event: ${JSON.stringify(event, null, 2)}`);
-    console.log(`index.ts-L20-Context: ${JSON.stringify(context, null, 2)}`);
+    console.log(`${pinLocation(THIS_FILE)}: ${JSON.stringify(event, null, 2)}`);
+    console.log(`${pinLocation(THIS_FILE)}: ${JSON.stringify(context, null, 2)}`);
 
 
     const bodyJson = JSON.parse(event.body ?? '');
