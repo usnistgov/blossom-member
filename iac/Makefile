@@ -95,7 +95,7 @@ $(CONNECTION_PROFILE_FILE): $(ENVIRONMENT_CONFIGURATION)
 	@mkdir -p $(CONNECTION_PROFILES_DIR)
 	set pipefail; ../util/gen-connection-profile.sh \
 		--network_id "$(shell jq -r .network_id $(ENVIRONMENT_CONFIGURATION))" \
-		--channels "$(shell jq -r .channel_name $(ENVIRONMENT_CONFIGURATION))" \
+		--channels "$(shell jq -r .all_channels $(ENVIRONMENT_CONFIGURATION))" \
 		--tlsCaCertPath "./managedblockchain-tls-chain.pem" \
 	> $(CONNECTION_PROFILE_FILE)
 

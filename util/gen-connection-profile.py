@@ -1,8 +1,10 @@
 #!/usr/bin/env python3
 # Generate a connection profile
 
-import boto3
 from itertools import chain
+
+import boto3
+
 
 def gen_channels(channels: 'list', orderer_name: str, peers_dict: 'dict'):
     # flatten dict of lists into list
@@ -84,7 +86,7 @@ def gen_certificate_authorities(members, tlsCaCertPath: str):
         for member in members
     }
 
-def gen_connection_profile(network_id: str, channels: 'list[str]', tlsCaCertPath: str):
+def gen_connection_profile(network_id: str, channels: str, tlsCaCertPath: str):
     client = boto3.client('managedblockchain')
     
     network = client.get_network(NetworkId=network_id)['Network']
@@ -110,12 +112,16 @@ def gen_connection_profile(network_id: str, channels: 'list[str]', tlsCaCertPath
     network_name = network['Name']
     orderer_name = f'orderer-{network["Name"]}'
 
+    ### print(f'\n\t🐞🐞🐞 {channels=}\n\t🐞🐞🐞')
+    channels_list = [item.strip() for item in channels.split(",")]
+    ### print(f'\n\t🐞🐞🐞{channels=}\n\t🐞🐞🐞')
+
     return {
         'name': network_name,
         'x-type': 'hlfv1',
         'description': f'Generated connection profile',
         'version': '1.0',
-        'channels': gen_channels(channels, orderer_name, nodes),
+        'channels': gen_channels(channels_list, orderer_name, nodes),
         'orderers': gen_orderers(network, tlsCaCertPath),
         'organizations': gen_organizations(members, nodes),
         'peers': gen_peers(nodes, tlsCaCertPath),
@@ -123,20 +129,24 @@ def gen_connection_profile(network_id: str, channels: 'list[str]', tlsCaCertPath
     }
 
 if __name__ == '__main__':
-    from argparse import ArgumentParser
     import json
+    from argparse import ArgumentParser
     from sys import stderr
     
     parser = ArgumentParser('gen-connection-profile.py',
         description='Generate a connection profile')
     parser.add_argument('--network_id', type=str, required=True,
         help="The network id (starts with n-...)")
-    parser.add_argument('--channels', default=[], nargs="*",
+    parser.add_argument('--channels', default=['authorization', 'business'],
         help='Channels to include in the profile')
     parser.add_argument('--tlsCaCertPath',
         default='/home/ec2-user/managedblockchain-tls-chain.pem',
         help='The location from which TLS cert will be loaded by clients')
     args = parser.parse_args()
+
+    ### print('\n\t🐞🐞🐞')
+    ### print(vars(args))
+    ### print('\t🐞🐞🐞\n')
 
     connection_profile = gen_connection_profile(**args.__dict__)
     print(json.dumps(connection_profile, indent=4))

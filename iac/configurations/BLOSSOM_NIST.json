@@ -8,7 +8,7 @@
     "member_name": "NIST",
     
 
-    "channel_name": "authorization",
+    "channel_names": "authorization",
     "contract_name": "authorization",
     "auth_channel": "authorization",
     "auth_contract": "authorization",
