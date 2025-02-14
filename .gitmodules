@@ -1,9 +1,0 @@
-[submodule "oscal"]
-	path = oscal
-	url = https://github.com/usnistgov/blossom-oscal.git
-[submodule "dashboard"]
-	path = dashboard
-	url = https://github.com/usnistgov/blossom-dashboard.git
-[submodule "sam"]
-	path = sam
-	url = https://github.com/usnistgov/blossom-sam.git
