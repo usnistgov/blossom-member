@@ -1,14 +1,19 @@
 {
-    "network_id": "n-FLXXKM7INVCDXGQMUAH633E6PQ",
     "network_name": "blossom",
-    
+    "network_id": "n-FLXXKM7INVCDXGQMUAH633E6PQ",
+
     "member_id": "m-DTLKIKVWWZER3DUHQUDH43I7YQ",
-    "member_name": "NIST",
     "peer_node_id": "nd-BURDFKAXHRFD3JHWFTPPPEJJ4M",
+   
+    "member_name": "NIST",
     
 
     "channel_name": "authorization",
     "contract_name": "authorization",
+
+    "all_channels": "authorization, business",
+    "all_contracts": "authorization, business",
+
     "identities_ssm_prefix": "/nist/blossom/dev/user",
     "cognito_user_pool_name": "blossom_test",
 

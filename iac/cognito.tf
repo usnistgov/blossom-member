@@ -14,7 +14,7 @@ resource "aws_cognito_user_pool_client" "client" {
   generate_secret                      = true
   callback_urls                        = var.cognito_debug ? [local.apigw_url, local.debug_callback_url] : [local.apigw_url]
   logout_urls                          = var.cognito_debug ? [local.apigw_url, local.debug_callback_url] : [local.apigw_url]
-  
+
   supported_identity_providers         = ["COGNITO"]
   
   explicit_auth_flows                  = ["ALLOW_CUSTOM_AUTH", "ALLOW_REFRESH_TOKEN_AUTH", "ALLOW_USER_SRP_AUTH"]
@@ -36,6 +36,16 @@ resource "aws_cognito_user_pool_client" "client" {
     id_token        = "minutes"
     refresh_token   = "days"
   }
+}
+
+resource "aws_cognito_user_pool_ui_customization" "client" {
+  client_id = aws_cognito_user_pool_client.client.id
+  image_file = filebase64("${path.module}//resources/Blossom-Logo-TransBG.png")
+
+  # Refer to the aws_cognito_user_pool_domain resource's
+  # user_pool_id attribute to ensure it is in an 'Active' state
+  # user_pool_id = aws_cognito_user_pool_domain.example.user_pool_id
+  user_pool_id = local.cognito_user_pool_id
 }
 
 output "client_id" {

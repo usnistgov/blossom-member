@@ -7,6 +7,11 @@ import { int } from "aws-sdk/clients/datapipeline";
 // const CONTRACT_NAME = process.env.CONTRACT_NAME ?? 'blossom';
 const CHANNEL_NAME = process.env.CHANNEL_NAME ?? 'authorization';
 const CONTRACT_NAME = process.env.CONTRACT_NAME ?? 'authorization';
+const AUTH_CHANNEL = process.env.AUTH_CHANNEL ?? 'authorization';
+const AUTH_CONTRACT = process.env.AUTH_CONTRACT  ?? 'authorization';
+const BUS_CHANNEL = process.env.BUS_CHANNEL ?? "business" ;
+const BUS_CONTRACT = process.env.BUS_CONTRACT ?? "business";
+const THIS_FILE = "handlers.ts";
 
 export type HandlerFunc = (event: APIGatewayEvent, bodyJson: any) => Promise<APIGatewayProxyResult>;
 
@@ -28,7 +33,25 @@ function pinErrorMsg(error: any = undefined, depth: int = 2):string {
     return `Couldn't locate Error`
     // return {filepath: match[1], line: match[2],column: match[3]};
   }
-
+/** Provides placement information for the location of the message and origin of the log entry
+ *
+ * @param specialPrefix - Additional prefix if needed
+ * @param depth (default=2) stack diving depth - 2 will point to the correct place
+ * @returns String with the CALLERS "FILE: LINE: Col:" location
+ */
+function pinLocationMsg(specialPrefix = '', depth = 2) {
+    const index = (!specialPrefix ? 2 : ((depth >= 0) ? depth : 1));
+    const error = new Error();
+    const regex = /\((.*):(\d+):(\d+)\)$/;
+    if (error.stack) {
+        const match = regex.exec(error.stack.split("\n")[index]);
+        if (match) {
+            return `${specialPrefix ? specialPrefix + '-' : '@'}File: ${match[1]} @Line:${match[2]} Col:${match[3]}\n`;
+        }
+    }
+    return `No Location Found for Caller in Trace-Stack`;
+    // return {filepath: match[1], line: match[2],column: match[3]};
+}
 /**
  * Returns user name from event
  * @param event Original AWS API-GAteway Event
@@ -89,8 +112,8 @@ const transactionHandler = async (event: APIGatewayEvent, bodyJson: any, type: '
     body.name = "getAccounts";
     body.transaction = "dValue";    
     const username = getUsername(event);
-    console.log(`ln92 Setting up Transaction...\n${body}`);
-    console.log('Setting up network...');
+    console.log(`${pinLocation('Setting up Transaction... ')} \n ${JSON.stringify(body, null, 2)}`);
+    console.log(`${pinLocation('Setting up network... ')} on channel ${body.channel} for User: ${username}`);
 
     const network = await setupNetwork(username, body.channel);
     console.log('Ln96: Setting up contract...');
@@ -134,3 +157,4 @@ const transactionHandler = async (event: APIGatewayEvent, bodyJson: any, type: '
 export const queryHandler: HandlerFunc = (event, bodyJson) => transactionHandler(event, bodyJson, 'query');
 export const invokeHandler: HandlerFunc = (event, bodyJson) => transactionHandler(event, bodyJson, 'invoke');
 export const pinError = (error: any)=> pinErrorMsg(error);
+export const pinLocation = (message: string) => pinLocationMsg(message);

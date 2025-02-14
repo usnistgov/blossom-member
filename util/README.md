@@ -1,6 +1,6 @@
 # NIST BLOSSOM Utilities
 
-The utility scripts in this directory help automate some maintanence and development operations of the BLOSSOM network.
+The utility scripts in this directory help automate some maintenance and development operations of the BLOSSOM network.
 
 ## Collection Config Generation
 
@@ -25,7 +25,7 @@ a properly configured EC2 instance in a NIST AWS account, developers must use
 the following procedure to create an AWS STS token for time-limited session for
 use with the `aws` utility.
 
-To boostrap this utility _after_ you cloned the repository, you must run the
+To bootstrap this utility _after_ you cloned the repository, you must run the
 following commands to install necessary dependencies.
 
 ```sh
