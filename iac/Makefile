@@ -4,7 +4,7 @@ AWS_PROFILE:=saml
 TERRAFORM_CMD:=./ter.sh
 
 LAMBDA_DIR:=./lambda
-DASHBOARD_DIR:=../dashboard
+DASHBOARD_DIR:=../../blossom-dashboard
 
 # Use this makefile to ensure the lambda and dashboard have been built before provisioning
 
