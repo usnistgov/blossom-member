@@ -11,6 +11,10 @@
     "email": "nikita.wootten@nist.gov"
   },
   "license": "NIST-PD-fallback",
+  "overrides": {
+    "uuid": "^11.0.0",
+    "jsrsasign": "^11.1.1"
+  },
   "dependencies": {
     "aws-sdk": "^2.1154.0",
     "fabric-network": "^2.2.20",
