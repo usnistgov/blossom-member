@@ -13,7 +13,8 @@
   "license": "NIST-PD-fallback",
   "overrides": {
     "uuid": "^11.0.0",
-    "jsrsasign": "^11.1.1"
+    "jsrsasign": "^11.1.1",
+    "@grpc/grpc-js": "^1.13.6"
   },
   "dependencies": {
     "aws-sdk": "^2.1154.0",
