@@ -38,7 +38,7 @@ pip3 install -r ./util/requirements.txt
 ### Usage
 
 After the dependencies are installed, a developer must log into the NIST VPN
-system and then authenticate with their NIST General Realm username and the
+system and then authenticate with their NIST Functional username and the
 password with the following command.
 
 ```sh
@@ -113,8 +113,8 @@ server, otherwise `True`
 token, otherwise auth.nist.gov
 - `IDP_REALM`: custom realm for NIST user authentication, otherwise `nist`
 as part of `nist\\nistrealmid`
-- `IDP_USER`: NIST general realm username, otherwise the user is prompted
-- `IDP_PASS`: NIST general realm password, otherwise the user is prompted
+- `IDP_USER`: NIST Functional username, otherwise the user is prompted
+- `IDP_PASS`: NIST Functional password, otherwise the user is prompted
 
 ### Common Errors
 
@@ -129,7 +129,7 @@ servers. There will be no explicit error to suggest a DNS misconfiguration.
 
 #### NoAuthHandlerFound: No handler was ready to authenticate
 
-If you confirmed proper use of NIST General Realm username and password, but you
+If you confirmed proper use of NIST Functional username and password, but you
 receive the error "NoAuthHandlerFound: No handler was ready to authenticate. 1
 handlers were checked. ['HmacAuthV4Handler']" check your that you have at least
 boilerplate section and variables in your `AWS_SHARED_CREDENTIALS_FILE` file,

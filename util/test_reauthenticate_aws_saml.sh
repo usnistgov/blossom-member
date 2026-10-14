@@ -27,6 +27,6 @@ test_setup_venv
   cd "$SCRIPT_DIR"
   source ./venv/bin/activate
 
-  msg "Enter your General Realm credentials:"
+  msg "Enter your Functional credentials:"
   python3 aws_saml_auth.py
 )
