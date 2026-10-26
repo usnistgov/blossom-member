@@ -8,7 +8,7 @@ const THIS_FILE = 'index.ts';
 /**
  * 
  * @param event AWS gateway event
- * @param context BloSS🌻M context to properly dispatch event with more details
+ * @param context BloSS@M context to properly dispatch event with more details
  * @param callback Gateway callback to communicate returned information
  */
 export const handler = async (

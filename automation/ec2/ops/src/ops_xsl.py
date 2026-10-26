@@ -186,15 +186,15 @@ class saxon_operations:
         return updated_xml        
     ### -----------------------------------------------------------------------------------  
 ### =======================================================================================
-@click.command(help="insert-party: Inserts BloSS🌻M User into SSP")
+@click.command(help="insert-party: Inserts BloSS@M User into SSP")
 @click.option('--ssp_file', '-s',
-                help="BloSS🌻M SSP-file in XMLformat")
+                help="BloSS@M SSP-file in XMLformat")
 @click.option('--user_info', '-u',
-                 help="BloSS🌻M XML-fragment user-to-insert information")
+                 help="BloSS@M XML-fragment user-to-insert information")
 @click.option('--copy_to', '-c',
-                help="BloSS🌻M SSP file for final copying of the result")
+                help="BloSS@M SSP file for final copying of the result")
 @click.option('--xsl_config', '-x',
-                help="BloSS🌻M XSl Config YAML-file")
+                help="BloSS@M XSl Config YAML-file")
 def insert_party(
                 ssp_file:str,
                 user_info: str,
@@ -256,7 +256,7 @@ def insert_party(
 # -----------------------------------------------------------------------------
 # group = click.Group()
 @click.group(   invoke_without_command=False, 
-                help='BloSS🌻M Documentation Update CLI'
+                help='BloSS@M Documentation Update CLI'
             )
 @click.pass_context
 def cli_entries(ctx):

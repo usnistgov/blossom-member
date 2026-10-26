@@ -403,7 +403,7 @@ class RepoOperations(CommandRunner):
         self.commands[CommandEC2.GIT_COMMIT_CHANGES] = [
                 'git', '-C', f'{REPO_PATH}', 
                 'commit', '-m', 
-                (f"'BloSS🌻M auto-process addressed request in ticket #{self.userReq.get_issue_number()}'"
+                (f"'BloSS@M auto-process addressed request in ticket #{self.userReq.get_issue_number()}'"
                  ), ] 
         ### Git push         
         self.commands[CommandEC2.GIT_PUSH_CHANGES] = [
@@ -917,13 +917,13 @@ def dispatch_command(envInfo: EnvConfig, recInfo: RequestConfig) -> bool:
 # =================================================================================
 
 
-@click.command(help="process-s3-file: Creates BloSS🌻M User as required per role")
+@click.command(help="process-s3-file: Creates BloSS@M User as required per role")
 @click.option('--s3_file', '-s3',
-                help="BloSS🌻M original S3-sourced YAML-file-trigger")
+                help="BloSS@M original S3-sourced YAML-file-trigger")
 # @click.option('--user_file', '-u',
-#                 help="BloSS🌻M user-to-create YAML-file request")
+#                 help="BloSS@M user-to-create YAML-file request")
 @click.option('--env_file', '-e', default='./env-ec2-prod.yaml',
-                help="BloSS🌻M AWS-EC2-AMB-GitHub env-description YAML-file")
+                help="BloSS@M AWS-EC2-AMB-GitHub env-description YAML-file")
 def process_s3_file(s3_file:str, 
                     env_file: str, ):
     """ Launches whole S3-processing process
@@ -970,13 +970,13 @@ def process_s3_file(s3_file:str,
             return 
 # -----------------------------------------------------------------------------
 
-@click.command(help="create-user: Creates BloSS🌻M User as required per role")
+@click.command(help="create-user: Creates BloSS@M User as required per role")
 @click.option('--s3_file', '-s3',
-                help="BloSS🌻M original S3-sourced YAML-file-trigger")
+                help="BloSS@M original S3-sourced YAML-file-trigger")
 # @click.option('--user_file', '-u',
-#                 help="BloSS🌻M user-to-create YAML-file request")
+#                 help="BloSS@M user-to-create YAML-file request")
 @click.option('--env_file', '-e',
-                help="BloSS🌻M AWS-EC2-AMB-GitHub env-description YAML-file")
+                help="BloSS@M AWS-EC2-AMB-GitHub env-description YAML-file")
 def create_user(req_file:str, 
                 env_file: str, 
                 ):
@@ -1048,12 +1048,12 @@ def create_user(req_file:str,
         print(CommandEC2.AMB_DEACTIVATE_USER.cmd_key())
 # -----------------------------------------------------------------------------
 
-@click.command(help="delete-user: Deletes BloSS🌻M User from IDP+Fabric if exists")
+@click.command(help="delete-user: Deletes BloSS@M User from IDP+Fabric if exists")
 @click.option('--env_file', '-e',
-                help="BloSS🌻M AWS-EC2-AMB-GitHub environment-description YAML-fle"
+                help="BloSS@M AWS-EC2-AMB-GitHub environment-description YAML-fle"
                 )
 @click.option('--user_file', '-u',
-                help="BloSS🌻M user-to-delete YAML-file request"
+                help="BloSS@M user-to-delete YAML-file request"
                 )
 def delete_user(ctx):
     ### 1. Validate Input
@@ -1074,17 +1074,17 @@ def delete_user(ctx):
 # -----------------------------------------------------------------------------
 # group = click.Group()
 @click.group(   invoke_without_command=False, 
-                help='BloSS🌻M ATO-automation CLI'
+                help='BloSS@M ATO-automation CLI'
             )
 @click.option(  '--print', '-p', 'execute_flag', 
                 default='', show_default=True, flag_value='print', 
-                help="BloSS🌻M CLI would run in commands print-only-mode")
+                help="BloSS@M CLI would run in commands print-only-mode")
 @click.option('--execute', '-x', 'execute_flag', 
                 default='execute', show_default=True, flag_value='execute',
-                help="BloSS🌻M CLI will execute and print commands")
+                help="BloSS@M CLI will execute and print commands")
 @click.option('--debug', '-d', 'debug_flag', 
                 default='', show_default=True, flag_value='debug',
-                help="BloSS🌻M CLI will execute with all debug messages")
+                help="BloSS@M CLI will execute with all debug messages")
 @click.pass_context
 def cli_entries(ctx, execute_flag:str, debug_flag: str):
     """My command-line tool."""

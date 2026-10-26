@@ -897,7 +897,7 @@ def read_yaml(yaml_file) -> dict:
 
 
 @click.group(   invoke_without_command=False, 
-                help='BloSS🌻M CLI YAML-reading part'
+                help='BloSS@M CLI YAML-reading part'
             )
 @click.pass_context
 def cli_entry(ctx):
