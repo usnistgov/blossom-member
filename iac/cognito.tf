@@ -40,7 +40,7 @@ resource "aws_cognito_user_pool_client" "client" {
 
 resource "aws_cognito_user_pool_ui_customization" "client" {
   client_id = aws_cognito_user_pool_client.client.id
-  image_file = filebase64("${path.module}//resources/Blossom-Logo-TransBG.png")
+  image_file = filebase64("${path.module}//resources/Blossom-Logo-WhiteBG.png")
 
   # Refer to the aws_cognito_user_pool_domain resource's
   # user_pool_id attribute to ensure it is in an 'Active' state
